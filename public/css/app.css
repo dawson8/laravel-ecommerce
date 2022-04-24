@@ -677,6 +677,9 @@ select {
 .mt-10 {
   margin-top: 2.5rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .block {
   display: block;
 }
