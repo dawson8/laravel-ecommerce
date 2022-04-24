@@ -14,9 +14,9 @@
 
     </x-select>
 
-    {{-- @if ($this->selectedVariationModel?->children->count())
+    @if ($this->selectedVariationModel?->children->count())
         <livewire:product-dropdown
             :variations="$this->selectedVariationModel->children->sortBy('order')"
             :key="$selectedVariation" />
-    @endif --}}
+    @endif
 </div>
