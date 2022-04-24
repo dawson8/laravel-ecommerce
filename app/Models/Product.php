@@ -14,4 +14,9 @@ class Product extends Model
     {
         return Money::GBP($this->price);
     }
+
+    public function variations()
+    {
+        return $this->hasMany(Variation::class);
+    }
 }

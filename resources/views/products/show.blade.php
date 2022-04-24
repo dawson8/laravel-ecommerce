@@ -19,6 +19,9 @@
 
                         <div class="mt-10">
                             {{-- <livewire:product-selector :product="$product" /> --}}
+                            <div class="mt-6">
+                                {{ $product->variations->sortBy('order')->groupBy('type')->first() }}
+                            </div>
                         </div>
                     </div>
                 </div>
