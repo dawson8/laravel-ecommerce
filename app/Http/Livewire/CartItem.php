@@ -19,7 +19,7 @@ class CartItem extends Component
     {
         app(CartInterface::class)->changeQuantity($this->variation, $quantity);
 
-        $this->emit('cart.update');
+        $this->emit('cart.updated');
 
         $this->dispatchBrowserEvent('notification', [
             'body' => 'Quantity updated'

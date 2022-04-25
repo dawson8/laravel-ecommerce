@@ -12,12 +12,12 @@
                     <div class="space-y-1 flex items-center justify-between">
                         <div class="font-semibold">Subtotal</div>
                         <h1 class="font-semibold text-xl">
-                            {{-- {{ $cart->formattedSubtotal() }} --}}
+                            {{ $cart->formattedSubtotal() }}
                         </h1>
                     </div>
                 </div>
 
-                {{-- <x-button-anchor a href="/checkout">Checkout</x-button-anchor> --}}
+                <x-button-anchor a href="/checkout">Checkout</x-button-anchor>
             </div>
 
         </div>
