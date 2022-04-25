@@ -12,28 +12,28 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Categories') }}
                     </x-nav-link>
                 </div>
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6 space-x-8">
-                <a href="/cart" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 
-                hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 
+                <a href="/cart" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700
+                hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                 ease-in-out">
                     Cart ({{ $this->cart->contentsCount() }})
                 </a>
-            
+
                 @guest
-                    <a href="/login" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 
-                    hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 
+                    <a href="/login" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700
+                    hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                     ease-in-out">
                         Login
                     </a>
-                    <a href="/register" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 
-                    hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 
+                    <a href="/register" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700
+                    hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150
                     ease-in-out">
                         Register
                     </a>
@@ -84,8 +84,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Categories') }}
             </x-responsive-nav-link>
         </div>
 

@@ -15,5 +15,5 @@
         </h2>
     </x-slot>
 
-    {{-- <livewire:product-browser :category="$category" /> --}}
+    <livewire:product-browser :category="$category" />
 </x-app-layout>
