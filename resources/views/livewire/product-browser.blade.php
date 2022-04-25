@@ -3,11 +3,13 @@
         <div class="space-y-6">
             <div class="space-y-1">
                 <ul>
-                    <li>
-                        <a href="" class="text-indigo-500">
-                            Category child
-                        </a>
-                    </li>
+                    @foreach ($category->children as $child)
+                        <li>
+                            <a href="/categories/{{ $child->slug }}" class="text-indigo-500">
+                                {{ $child->title }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 
