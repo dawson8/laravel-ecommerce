@@ -75,6 +75,29 @@ class Cart implements CartInterface
         });
     }
 
+    public function syncAvailableQuantities()
+    {
+        $syncedQuantities = $this->instance()->variations->mapWithKeys(function ($variation) {
+            $quantity = $variation->pivot->quantity > $variation->stocks->sum('count')
+                ? $variation->stockCount()
+                : $variation->pivot->quantity;
+
+            return [
+                $variation->id => [
+                    'quantity' => $quantity
+                ]
+            ];
+        })
+        ->reject(function ($syncedQuantity) {
+            return $syncedQuantity['quantity'] === 0;
+        })
+        ->toArray();
+
+        $this->instance()->variations()->sync($syncedQuantities);
+
+        $this->clearInstanceCache();
+    }
+
     public function getVariation(Variation $variation)
     {
         return $this->instance()->variations->find($variation->id);
@@ -101,6 +124,11 @@ class Cart implements CartInterface
     public function formattedSubtotal()
     {
         return money($this->subtotal());
+    }
+
+    protected function clearInstanceCache()
+    {
+        $this->instance = null;
     }
 
     protected function instance()
