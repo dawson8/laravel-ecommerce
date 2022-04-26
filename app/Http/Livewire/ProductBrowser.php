@@ -8,6 +8,17 @@ use Livewire\Component;
 class ProductBrowser extends Component
 {
     public $category;
+    public $queryFilters = [];
+
+    public function mount()
+    {
+        $this->queryFilters = $this->category->products->pluck('variations')
+            ->flatten()
+            ->groupBy('type')
+            ->keys()
+            ->mapWithKeys(fn ($key) => [$key => []])
+            ->toArray();
+    }
 
     public function render()
     {
