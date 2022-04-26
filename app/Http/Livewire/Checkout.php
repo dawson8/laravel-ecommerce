@@ -15,6 +15,8 @@ class Checkout extends Component
 
     public $shippingAddress;
 
+    public $userShippingAddressId;
+
     public $accountForm = [
         'email' => ''
     ];
@@ -49,6 +51,21 @@ class Checkout extends Component
             'shippingForm.postcode' => 'required|max:355',
             'shippingTypeId' => 'required|exists:shipping_types,id'
         ];
+    }
+
+    public function updatedUserShippingAddressId($id)
+    {
+        if (!$id) {
+            return;
+        }
+
+        $this->shippingForm = $this->userShippingAddresses->find($id)
+            ->only('address', 'city', 'postcode');
+    }
+
+    public function getUserShippingAddressesProperty()
+    {
+        return auth()->user()?->shippingAddresses;
     }
 
     public function checkout()

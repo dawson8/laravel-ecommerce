@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function shippingAddresses()
     {
-        return $this->hasMany(ShippingAddresses::class);
+        return $this->hasMany(ShippingAddress::class);
     }
 }
