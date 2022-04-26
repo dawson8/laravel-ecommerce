@@ -32,7 +32,7 @@ class ProductBrowser extends Component
                     return $value->map(fn ($value) => $key . ' = "' . $value . '"');
                 })
                 ->flatten()
-                ->join(' AND');
+                ->join(' OR ');
 
             $options['facetsDistribution'] = ['size', 'colour'];
 
