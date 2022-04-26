@@ -11,14 +11,17 @@ class ProductBrowser extends Component
 
     public function render()
     {
-        $products = Product::search('', function ($meilisearch, string $query, array $options) {
-            $options['filter'] = 'category_ids = ' . $this->category->id;
+        $search = Product::search('', function ($meilisearch, string $query, array $options) {
+            $options['facetsDistribution'] = ['size', 'colour'];
 
-            return $meilisearch->search($query); // $options removed suggested by Janroe in comments, apparently this is getting fixed in episode 36
-        })->get();
+            return $meilisearch->search($query, $options);
+        })->raw();
+
+        $products = $this->category->products->find(collect($search['hits'])->pluck('id'));
 
         return view('livewire.product-browser', [
             'products' => $products,
+            'filters' => $search['facetsDistribution']
         ]);
     }
 }
