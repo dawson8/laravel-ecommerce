@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cknow\Money\Money;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use illuminate\Support\Str;
@@ -30,6 +31,11 @@ class Order extends Model
             $order->placed_at = now();
             $order->uuid = (string) Str::uuid();
         });
+    }
+
+    public function formattedSubtotal()
+    {
+        return Money::GBP($this->subtotal);
     }
 
     public function user()

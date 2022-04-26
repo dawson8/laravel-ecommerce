@@ -18,7 +18,7 @@
 
                     <div class="flex items-center flex-grow">
                         <input type="search" wire:model.debounce.500ms="searchQuery" placeholder="Search for products" class="flex-grow text-sm h-10 rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                    </div>                    
+                    </div>
                 </div>
             </div>
 
@@ -58,6 +58,10 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-dropdown-link :href="route('orders')">
+                                {{ __('Orders') }}
+                            </x-dropdown-link>
+
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -131,8 +135,8 @@
                     <div>No products found</div>
                 @endforelse
             </div>
-        
+
             <a href="#" class="inline-block text-indigo-500 mt-6" wire:click="clearSearch">Clear search</a>
-        </div>    
+        </div>
     @endif
 </nav>
