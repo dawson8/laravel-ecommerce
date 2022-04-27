@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Presenters\OrderPresenter;
 use Cknow\Money\Money;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -76,5 +77,10 @@ class Order extends Model
         return $this->belongsToMany(Variation::class)
             ->withPivot(['quantity'])
             ->withTimestamps();
+    }
+
+    public function presenter()
+    {
+        return new OrderPresenter($this);
     }
 }
