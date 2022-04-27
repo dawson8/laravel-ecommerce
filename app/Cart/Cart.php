@@ -29,15 +29,20 @@ class Cart implements CartInterface
         $this->instance()->delete();
     }
 
+    public function associate(User $user)
+    {
+        if ($user) {
+            $this->instance()->user()->associate($user);
+        }
+
+        $this->instance()->save();
+    }
+
     public function create(?User $user = null)
     {
         $instance = ModelsCart::make();
 
-        if ($user) {
-            $instance->user()->associate($user);
-        }
-
-        $instance->save();
+        //
 
         $this->session->put('cart.session.key', $instance->uuid);
     }
