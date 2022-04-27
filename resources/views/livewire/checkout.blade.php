@@ -3,6 +3,7 @@
     x-data="{
         stripe: null,
         cardElement: null,
+        email: @entangle('accountForm.email').defer,
 
         async submit () {
             await $wire.callValidate()
@@ -17,7 +18,7 @@
                 '{{ $paymentIntent->client_secret }}', {
                     payment_method: {
                         card: this.cardElement,
-                        billing_details: { email: 'test@user.com' }
+                        billing_details: { email: this.email }
                     }
                 }
             )
