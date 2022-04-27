@@ -75,6 +75,14 @@ class Checkout extends Component
     {
         $this->validate();
 
+        if (!$this->getPaymentIntent($cart)->status === 'succeeded') {
+            $this->dispatchBrowserEvent('notification', [
+                'body' => 'Your payment failed.'
+            ]);
+
+            return;
+        }
+
         $this->shippingAddress = ShippingAddress::query();
 
         if (auth()->user()) {
@@ -154,7 +162,7 @@ class Checkout extends Component
         if ($cart->hasPaymentIntent()) {
             $paymentIntent = app('stripe')->paymentIntents->retrieve($cart->getPaymentIntentId());
 
-            if ($paymentIntent->status === 'succeeded')
+            if ($paymentIntent->status !== 'succeeded')
             {
                 app('stripe')->paymentIntents->update($cart->getPaymentIntentId(), [
                     'amount' => (int) $this->total,
