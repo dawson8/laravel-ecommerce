@@ -4,8 +4,16 @@
         stripe: null,
         cardElement: null,
 
-        submit () {
-            console.log('submit')
+        async submit () {
+            await $wire.callValidate()
+
+            let errorCount = await $wire.getErrorCount()
+
+            if (errorCount >= 1) {
+                return
+            }
+
+            console.log('submit payment')
         },
 
         init () {
@@ -102,7 +110,7 @@
 
                 <div>
                     {{-- {{ $paymentIntent->client_secret }} --}}
-                    <div id="card-element"></div>
+                    <div wire:ignore id="card-element"></div>
                 </div>
             </div>
         </div>
