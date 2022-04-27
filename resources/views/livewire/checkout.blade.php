@@ -13,7 +13,21 @@
                 return
             }
 
-            console.log('submit payment')
+            const { paymentIntent, error } = await this.stripe.confirmCardPayment(
+                '{{ $paymentIntent->client_secret }}', {
+                    payment_method: {
+                        card: this.cardElement,
+                        billing_details: { email: 'test@user.com' }
+                    }
+                }
+            )
+
+            if (error) {
+                //show
+            } else {
+                // grab payment intent id
+                // call checkout()
+            }
         },
 
         init () {
@@ -109,7 +123,6 @@
                 <div class="font-semibold text-lg">Payment</div>
 
                 <div>
-                    {{-- {{ $paymentIntent->client_secret }} --}}
                     <div wire:ignore id="card-element"></div>
                 </div>
             </div>
