@@ -1,5 +1,5 @@
 @component('mail::message')
-# The status of your order (#{{ $order->id }}) has changed
+# Your order (#{{ $order->id }}) has been placed.
 
 The body of your message.
 
